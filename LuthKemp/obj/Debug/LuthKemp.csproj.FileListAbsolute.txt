@@ -1,0 +1,4 @@
+c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\LuthKemp\bin\Debug\LuthKemp.dll
+c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\LuthKemp\bin\Debug\LuthKemp.pdb
+c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\LuthKemp\obj\Debug\LuthKemp.dll
+c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\LuthKemp\obj\Debug\LuthKemp.pdb
