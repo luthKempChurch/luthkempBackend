@@ -32,8 +32,7 @@ namespace JabuBackendServer.Controllers
         public async Task<IHttpActionResult> GetMobileNotificationTokens(int id)
         {
             MobileNotificationTokens mobileNotificationTokens = await db.MobileNotificationToken.FindAsync(id);
-            string s;
-            StringBuilder
+   
             if (mobileNotificationTokens == null)
             {
                 return NotFound();

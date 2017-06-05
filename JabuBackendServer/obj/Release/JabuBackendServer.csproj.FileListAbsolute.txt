@@ -96,3 +96,5 @@ C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\
 C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Release\JabuBackendServer.csproj.GenerateResource.Cache
 C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Release\JabuBackendServer.dll
 C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Release\JabuBackendServer.pdb
+C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Release\JabuBackendServer.Migrations.addingtokenstorage.resources
+C:\Users\J.Madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Release\JabuBackendServer.Migrations.addingtokenstoragekeys.resources
