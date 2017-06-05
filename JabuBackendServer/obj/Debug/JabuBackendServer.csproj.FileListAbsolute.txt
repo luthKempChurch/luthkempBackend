@@ -96,3 +96,5 @@ c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\
 c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\bin\Microsoft.Owin.Cors.dll
 c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\bin\System.Web.Cors.dll
 c:\users\j.madzivadondo\documents\visual studio 2015\Projects\JabuBackendServer\JabuBackendServer\bin\Microsoft.Owin.Cors.xml
+C:\Users\J.Madzivadondo\Documents\Visual Studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Debug\JabuBackendServer.Migrations.addingtokenstorage.resources
+C:\Users\J.Madzivadondo\Documents\Visual Studio 2015\Projects\JabuBackendServer\JabuBackendServer\obj\Debug\JabuBackendServer.Migrations.addingtokenstoragekeys.resources

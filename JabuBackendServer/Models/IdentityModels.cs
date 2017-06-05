@@ -35,5 +35,6 @@ namespace JabuBackendServer.Models
         public DbSet<Prayer> Prayers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<MobileNotificationTokens> MobileNotificationToken { get; set; }
     }
 }
