@@ -11,110 +11,56 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using JabuBackendServer.Models;
 using LuthKemp;
+using JabuBackendServer.Providers;
 
 namespace JabuBackendServer.Controllers
 {
-    public class PrayersController : ApiController
+  //[Authorize]
+  [RoutePrefix("api/prayer")]
+  public class PrayersController : CustomApiController
+  {
+    private DataAccess.DataAccess repo;
+
+    public PrayersController()
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: api/Prayers
-        public IQueryable<Prayer> GetPrayers()
-        {
-            return db.Prayers;
-        }
-
-        // GET: api/Prayers/5
-        [ResponseType(typeof(Prayer))]
-        public async Task<IHttpActionResult> GetPrayer(int id)
-        {
-            Prayer prayer = await db.Prayers.FindAsync(id);
-            if (prayer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(prayer);
-        }
-
-        // PUT: api/Prayers/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPrayer(int id, Prayer prayer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != prayer.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(prayer).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PrayerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Prayers
-        [ResponseType(typeof(Prayer))]
-        public async Task<IHttpActionResult> PostPrayer(Prayer prayer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Prayers.Add(prayer);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = prayer.Id }, prayer);
-        }
-
-        // DELETE: api/Prayers/5
-        [ResponseType(typeof(Prayer))]
-        public async Task<IHttpActionResult> DeletePrayer(int id)
-        {
-            Prayer prayer = await db.Prayers.FindAsync(id);
-            if (prayer == null)
-            {
-                return NotFound();
-            }
-
-            db.Prayers.Remove(prayer);
-            await db.SaveChangesAsync();
-
-            return Ok(prayer);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool PrayerExists(int id)
-        {
-            return db.Prayers.Count(e => e.Id == id) > 0;
-        }
+      repo = new DataAccess.DataAccess();
     }
+
+    [Route("get")]
+    public async Task<HttpResponseMessage> Get()
+    {
+      try
+      {
+        var Prayer = await repo.GetPrayers();
+        return Prayer != null ? Success(Request,Prayer) : BadRequest(Request,"Failed");
+      }
+      catch(Exception ex)
+      {
+        return ServerError(Request, ex);
+      }
+     
+    }
+    [Route("post")]
+    [ResponseType(typeof(Prayer))]
+    public async Task<HttpResponseMessage> Post([FromBody]Prayer prayer )
+    {
+      try
+      {
+        var _prayer = await repo.CreatePrayer(prayer);
+        return _prayer != null ? Success(Request, prayer) : BadRequest(Request, "Failed to create a prayer");
+      }catch(Exception ex)
+      {
+        return ServerError(Request, ex);
+      }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        repo.Dispose(disposing);
+      }
+      base.Dispose(disposing);
+    }
+  }
 }

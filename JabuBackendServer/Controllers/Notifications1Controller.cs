@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using JabuBackendServer.Models;
 using LuthKemp;
+using JabuBackendServer.Providers;
 
 namespace JabuBackendServer.Controllers
 {
@@ -54,12 +55,24 @@ namespace JabuBackendServer.Controllers
             {
                 db.Notifications.Add(notification);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+        var tokens = await db.MobileNotificationToken.ToListAsync();
+        sendMobileNotification(tokens, notification);
+        return RedirectToAction("Index");
             }
 
             return View(notification);
         }
-
+        
+        private void sendMobileNotification(List<MobileNotificationTokens> tokens, Notification notification)
+    {
+      
+      List<string> Stringtokens = new List<string>();
+      tokens.ForEach(delegate (MobileNotificationTokens n)
+      {
+        Stringtokens.Add(n.Token);
+      });
+      PushyAPI.SendPush(new PushyPushRequest(new { message = notification.Message, title = notification.Title }, Stringtokens.ToArray(), new { message = notification.Message }));
+    }
         // GET: Notifications1/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -86,7 +99,9 @@ namespace JabuBackendServer.Controllers
             {
                 db.Entry(notification).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+        var tokens = await db.MobileNotificationToken.ToListAsync();
+        sendMobileNotification(tokens, notification);
+        return RedirectToAction("Index");
             }
             return View(notification);
         }

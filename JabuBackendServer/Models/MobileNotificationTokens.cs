@@ -9,14 +9,12 @@ namespace JabuBackendServer.Models
 {
     public class MobileNotificationTokens
     {
-        [Key]
-        [Column(Order = 1)]
-        public int Id { get; set; }
-        [Key]
-        [Column(Order = 2)]
-        public string Token { get; set; }
-        public ApplicationUser User { get; set; }
-    }
+    public int Id { get; set; }
+    [StringLength(65)]
+    [Index("ix_Token", 1, IsUnique = true)]
+    public string Token { get; set; }
+    public string DeviceId { get; set; }
+  }
 
     public class MobileNotificationTokensViewModel
     {
